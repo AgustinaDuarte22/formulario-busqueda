@@ -1,0 +1,4 @@
+<%= turbo_stream.action('replace', target: 'cars-list') do |s| %> 
+    <%= s.render partial: 'cars_list_partial' %>
+  <% end %>
+  

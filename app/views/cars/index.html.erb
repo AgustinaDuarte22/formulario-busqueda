@@ -1,0 +1,17 @@
+
+<%= form_with(url: cars_path, data: { controller: 'cars', target: 'cars.form' }) do |form| %>
+ <% ['VW', 'Chevrolet', 'Ford', 'Toyota'].each do |brand| %>
+   <label>
+    <% checked = params[:brand] && params[:brand].include?(brand) %>
+      <%= form.check_box :brand, { multiple: true, class: 'checkbox', data: { target: 'cars.checkbox' }, checked: checked }, brand %>
+    <%= brand %>
+   </label>
+  <% end %>
+<% end %>
+
+<div id="cars-list">
+  <%= turbo_stream.replace 'cars-list' do %>
+    <%= render partial: 'cars_list_partial', locals: { cars: @cars } %>
+  <% end %>
+</div>
+
